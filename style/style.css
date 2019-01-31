@@ -7,7 +7,7 @@
   body {
     height: 100vh;
     display: flex;
-    background: #060AB2;
+    background: #34495e;
   }
   
   .memory-game {
@@ -37,10 +37,7 @@
   
   .memory-card.flip {
     transform: rotateY(180deg);
-<<<<<<< HEAD
-=======
     
->>>>>>> f0fac086cd10bf13509182dc930d385c404881a2
   }
   
   .front-face,
@@ -50,7 +47,7 @@
     padding: 20px;
     position: absolute;
     border-radius: 5px;
-    background: #1C7CCC;
+    background: #3498db;
     backface-visibility: hidden;
   }
   
