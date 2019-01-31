@@ -37,6 +37,10 @@
   
   .memory-card.flip {
     transform: rotateY(180deg);
+<<<<<<< HEAD
+=======
+    
+>>>>>>> f0fac086cd10bf13509182dc930d385c404881a2
   }
   
   .front-face,
