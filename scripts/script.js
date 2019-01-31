@@ -1,15 +1,16 @@
 "use strict";
+
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
  let nums = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
 
 for (let i = 0; i < 12; i++) {
-  let imageNumber = nums[Math.floor(Math.random() * nums.length)];
+  let imageNumber = Math.floor(Math.random() * nums.length);
   
   $(".memory-game").append(`
   <div class="memory-card">
-    <img class="front-face" src="/Assets/Images/Naruto/${imageNumber}.png"/>
+    <img class="front-face" src="/Assets/Images/Naruto/${nums[imageNumber]}.png"/>
     <img class="back-face" src="Assets/Images/Naruto/Back.png"/>
   </div>`
   );
@@ -43,6 +44,7 @@ function cardMatch(firstCard, secondCard) {
     console.log("not a match");
     firstCard = null;
     secondCard = null;
+    
   }
 };
 
