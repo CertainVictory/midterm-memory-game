@@ -1,18 +1,23 @@
-const cards = $('.memory-card');
+"use strict";
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
-// const nums = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+ let nums = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
 
 for (let i = 0; i < 12; i++) {
+  let imageNumber = nums[Math.floor(Math.random() * nums.length)];
+  
   $(".memory-game").append(`
-  div class="memory-card">
-    <img class="front-face" src="/Assets/Images/Naruto/0.png"/>
+  <div class="memory-card">
+    <img class="front-face" src="/Assets/Images/Naruto/${imageNumber}.png"/>
     <img class="back-face" src="Assets/Images/Naruto/Back.png"/>
   </div>`
   );
+  
+  nums.splice(imageNumber, 1)
 }
-cards.on("click", function(e) {
+$(".memory-card").on("click", function(e) {
+  console.log("fdkjhfgjk")
   // if (lockBoard) return;
   // if (this === firstCard) return;
   $(e.target.parentElement).addClass('flip');
