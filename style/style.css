@@ -4,32 +4,98 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Lemon Milk";
+  src: url(/Assets/Fonts/LemonMilk.otf)
+}
+
 body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  background: #060AB2;
+  background: #34495e;
+  font-family: "Lemon Milk";
+  flex-direction: column;
 }
 
+/* Navigation Bar */
+
+nav {
+  position: fixed;
+  top:0;
+  width: 100vw;
+  height: 150px;
+  display: flex;
+  background-color: #3498db;
+  justify-content: space-between;
+  padding:25px;
+}
+
+.btn-restart {
+  font-size:32px;
+  color: #eeeeee;
+  background-color: #34495e;
+  align-self: center;
+  padding:15px;
+  padding-right:30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.img-restart {
+  max-width:48px;
+  max-height:48px;
+  padding-right:5px;
+}
+
+.title {
+  color:#eeeeee;
+  font-size: 64px;
+  align-self: center;
+}
+
+#cont-time{
+  display: flex;
+}
+
+#time {
+  color:#eeeeee;
+  font-size: 48px;
+  align-self: center;
+}
+
+/* Overlay */
+#btn_style {
+  width: 300px;
+  border: 0px soild;
+  background-color: darkorange;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+ }
+
+/* Memory card Container */
+
 .memory-game {
-  width: 840px;
-  height: 1280px;
-  margin: 20px;
-  justify-self: center;
+  /* width: 880px; */
   display: flex;
   flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
   perspective: 1000px;
 }
 
+/* Memory cards */
+
 .memory-card {
-  width: calc(26% - 10px);
-  height: calc(28.333% - 10px);
-  margin: 5px;
+  width:208px;
+  height: 250px;
+  margin: 15px;
   position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .5s;
-  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
 }
 
 .memory-card:active {
@@ -43,12 +109,11 @@ body {
 
 .front-face,
 .back-face {
-  width: 100%;
-  height: 100%;
+  max-width: 250px;
+  max-height: 250px;
   padding: 20px;
   position: absolute;
-  border-radius: 5px;
-  background: #1C7CCC;
+  background: #3498db;
   backface-visibility: hidden;
 }
 
