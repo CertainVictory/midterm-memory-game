@@ -1,71 +1,82 @@
 "use strict";
 $(document).ready(function () {
-//<----------OVERLAY STYLE---------->
+  //<----------OVERLAY STYLE---------->
   function displayOverlay(text) {
     $("<table id='overlay'><tbody><tr><td>" + text + "</td></tr></tbody></table>").css({
-        "position": "fixed",
-        "top": "0px",
-        "left": "0px",
-        "width": "100%",
-        "height": "100%",
-        "background-color": "rgba(0,0,0,.5)",
-        "z-index": "10",
-        "vertical-align": "middle",
-        "text-align": "center",
-        "color": "#fff",
-        // "font-weight": "bold",
+      "position": "fixed",
+      "top": "0px",
+      "left": "0px",
+      "width": "100%",
+      "height": "100%",
+      "background-color": "rgba(0,0,0,.5)",
+      "z-index": "10",
+      "vertical-align": "middle",
+      "text-align": "center",
+      "color": "#fff",
+      // "font-weight": "bold",
     }).appendTo("body");
-}
-//<-------------OVERLAY STYLE END------------>
-function removeOverlay() {
+  }
+  //<-------------OVERLAY STYLE END------------>
+  function removeOverlay() {
     $("#overlay").remove();
-}
+  }
 
-    $("body").click(function () {
-        if ($("#btn_style").length > 0) {
-            removeOverlay();
-        } 
-        
-    });
-    displayOverlay(`
+  $("body").click(function () {
+    if ($("#btn_style").length > 0) {
+      removeOverlay();
+    }
+
+  });
+  displayOverlay(`
     <p>Will you be Hokage?</p>
     <button id="btn_style" type="button">START</button>`);
-    
-function startTimer() {
-  var counter = 0;
-var timeleft = 300;
 
-function startTimer(duration, display) {
- var timer = duration, minutes, seconds;
- setInterval(function () {
-     minutes = parseInt(timer / 60, 10);
-     seconds = parseInt(timer % 60, 10);
+  function startTimer() {
+    var counter = 0;
+    var timeleft = 300;
 
-     minutes = minutes < 10 ? "0" + minutes : minutes;
-     seconds = seconds < 10 ? "0" + seconds : seconds;
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
 
-     display.text(minutes + ":" + seconds);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-     if (--timer < 0) {
-         timer = duration;
-     }
- }, 1000);
-}
+        display.text(minutes + ":" + seconds);
 
-jQuery(function ($) {
- var fiveMinutes = 60 * 2,
-     display = $('#time');
- startTimer(fiveMinutes, display);
-});
+        if (--timer < 0) {
+          timer = duration;
+        } else if (timer === 0) {
 
-  console.log("timer start")
-}
+          displayOverlay(`
+      <p>Will you be Hokage?</p>
+      <button id="btn_style" type="button">START</button>`);
+          return;
+        }
+      }, 1000);
+    }
 
-$("#btn_style").on("click", function() {
-  startTimer();
-});
+    jQuery(function ($) {
+      var fiveMinutes = 60 * 2,
+        display = $('#time');
+      startTimer(fiveMinutes, display);
+    });
 
-  
+    console.log("timer start")
+  }
+
+  //IF TIMER 0 THEN POP UP ANOTHER OVERLAY
+
+
+
+
+  $("#btn_style").on("click", function () {
+    startTimer();
+  });
+
+
   let hasFlippedCard = false;
   let lockBoard = false;
   let firstCard, secondCard;
@@ -99,20 +110,28 @@ $("#btn_style").on("click", function() {
       // second card
       hasFlippedCard = false;
       secondCard = e.target.parentElement;
-      
+
     }
     console.log($(firstCard).children().first().attr("src"));
     console.log($(secondCard).children().first().attr("src"));
     cardMatch(firstCard, secondCard);
   });
   function cardMatch(firstCard, secondCard) {
+    let match = false;
+
     if ($(firstCard).children().first().attr("src") === $(secondCard).children().first().attr("src")) {
-
-
+      match = true;
+      if (match === true) {
+        $(firstCard).addClass("disappear");
+        $(secondCard).addClass("disappear");
+  
+      }
+      console.log(match)
     } else {
+      // match = false;
       unflipCards()
+      console.log(match)
     }
-
   }
 
   function disableCards() {
@@ -135,7 +154,14 @@ $("#btn_style").on("click", function() {
   function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
+  };
+
+  function winGame() {
+    displayOverlay(`
+    <p>Will you be Hokage?</p>
+    <button id="btn_style" type="button">START</button>`);
+
   }
-  ;
-  //<---------------END OF ready Doc----------------->
 })
+
+  //<---------------END OF ready Doc----------------->
