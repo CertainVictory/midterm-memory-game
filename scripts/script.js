@@ -9,11 +9,11 @@ $(document).ready(function () {
         "width": "100%",
         "height": "100%",
         "background-color": "rgba(0,0,0,.5)",
-        "z-index": "10000",
+        "z-index": "10",
         "vertical-align": "middle",
         "text-align": "center",
         "color": "#fff",
-        "font-weight": "bold",
+        // "font-weight": "bold",
     }).appendTo("body");
 }
 //<-------------OVERLAY STYLE END------------>
@@ -24,11 +24,12 @@ function removeOverlay() {
     $("body").click(function () {
         if ($("#btn_style").length > 0) {
             removeOverlay();
-        } else {
-          displayOverlay(`<button id="btn_style" type="button">START</button>`);
-        }
+        } 
+        
     });
-    displayOverlay(`<button id="btn_style" type="button">START</button>`);
+    displayOverlay(`
+    <p>Will you be Hokage?</p>
+    <button id="btn_style" type="button">START</button>`);
     
 function startTimer() {
   var counter = 0;
@@ -56,6 +57,7 @@ jQuery(function ($) {
      display = $('#time');
  startTimer(fiveMinutes, display);
 });
+
   console.log("timer start")
 }
 
