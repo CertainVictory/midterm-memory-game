@@ -18,20 +18,23 @@ for (let i = 0; i < 12; i++) {
   nums.splice(imageNumber, 1)
 }
 $(".memory-card").on("click", function(e) {
-  console.log("fdkjhfgjk")
-  // if (lockBoard) return;
-  // if (this === firstCard) return;
+  if (lockBoard) return;
+  if (this === firstCard) return;
   $(e.target.parentElement).addClass('flip');
   if (!hasFlippedCard) {
     //first card
     hasFlippedCard = true;
     firstCard = e.target.parentElement;
-    console.log(firstCard);
+
+
+    disableCards();
+ 
   } else {
     // second card
     hasFlippedCard = false;
     secondCard = e.target.parentElement;
-    console.log(secondCard);
+
+    // unflipCards()
   }
   console.log($(firstCard).children().first().attr("src"));
   console.log($(secondCard).children().first().attr("src"));
@@ -39,14 +42,39 @@ $(".memory-card").on("click", function(e) {
 });
 function cardMatch(firstCard, secondCard) {
   if ($(firstCard).children().first().attr("src") === $(secondCard).children().first().attr("src")) {
-    console.log("match");
-  } else {
-    console.log("not a match");
-    firstCard = null;
-    secondCard = null;
     
+
+  } else {
+
+    unflipCards()
+    // firstCard = null;
+    // secondCard = null;
   }
-};
+
+}
+
+  function disableCards() {
+    firstCard.removeEventListener('click', flipCard);
+    secondCard.removeEventListener('click', flipCard);
+  
+    resetBoard();
+  }
+
+  function unflipCards() {
+    lockBoard = true;
+  
+    setTimeout(() => {
+      firstCard.classList.remove('flip');
+      secondCard.classList.remove('flip');
+  
+      resetBoard();
+    }, 1000);
+  }
+  function resetBoard() {
+    [hasFlippedCard, lockBoard] = [false, false];
+    [firstCard, secondCard] = [null, null];
+  }
+;
 
 
 
