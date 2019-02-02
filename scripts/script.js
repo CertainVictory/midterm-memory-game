@@ -95,7 +95,7 @@ $(document).ready(function () {
 
 
   //<-----------------FLIP------------>
-
+function flipCards(){
   $(document).on("click", ".memory-card", function (e) {
     if (lockBoard) return;
     if (this === firstCard) return;
@@ -118,6 +118,7 @@ $(document).ready(function () {
     console.log($(secondCard).children().first().attr("src"));
     cardMatch(firstCard, secondCard);
   });
+}
 
   //<-------------MATCH------------>
   function cardMatch(firstCard, secondCard) {
@@ -176,6 +177,7 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-restart", function(){
     sec = 0
+    flipCards();
     console.log('HELLORES')
   })
 
