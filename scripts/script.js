@@ -14,6 +14,7 @@ $(document).ready(function () {
     shuffle();
     startTimer();
     removeOverlay();
+    flipCards();
   })
 
   $(document).on("click", ".btn_dbz", function(){
