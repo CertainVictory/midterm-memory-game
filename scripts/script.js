@@ -1,5 +1,7 @@
 "use strict";
 $(document).ready(function () {
+
+  shuffle();
   //<----------OVERLAY STYLE---------->
   function displayOverlay(text) {
     $("<table id='overlay'><tbody><tr><td>" + text + "</td></tr></tbody></table>").css({
@@ -16,7 +18,7 @@ $(document).ready(function () {
       // "font-weight": "bold",
     }).appendTo("body");
   }
-  //<-------------OVERLAY STYLE END------------>
+
   function removeOverlay() {
     $("#overlay").remove();
   }
@@ -31,69 +33,64 @@ $(document).ready(function () {
     <p>Will you be Hokage?</p>
     <button id="btn_style" type="button">START</button>`);
 
+
+  //<------------TIMER--------->
   function startTimer() {
-    var counter = 0;
-    var timeleft = 300;
+    var sec = 10;
+    var timer = setInterval(function () {
+      $('#time').html('00:' + sec);
+      sec--;
+      if (sec < 0) {
+        clearInterval(timer)
+        loseGame()
 
-    function startTimer(duration, display) {
-      var timer = duration, minutes, seconds;
-      setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.text(minutes + ":" + seconds);
-
-        if (--timer < 0) {
-          timer = duration;
-        } else if (timer === 0) {
-
-          displayOverlay(`
-      <p>Will you be Hokage?</p>
-      <button id="btn_style" type="button">START</button>`);
-          return;
-        }
-      }, 1000);
-    }
-
-    jQuery(function ($) {
-      var fiveMinutes = 60 * 2,
-        display = $('#time');
-      startTimer(fiveMinutes, display);
-    });
-
-    console.log("timer start")
+      }
+    }, 1000);
   }
-
-  //IF TIMER 0 THEN POP UP ANOTHER OVERLAY
-
 
 
 
   $("#btn_style").on("click", function () {
-    startTimer();
+    startTimer()
+
   });
 
+  //<------------------------------GAME FUNCTION------------------------------>
+
+  //<-----------SHUFFLE------------>
 
   let hasFlippedCard = false;
   let lockBoard = false;
   let firstCard, secondCard;
-  let nums = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+  function shuffle() {
 
-  for (let i = 0; i < 12; i++) {
-    let imageNumber = Math.floor(Math.random() * nums.length);
+    let nums = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+    for (let i = 0; i < 12; i++) {
+      let imageNumber = Math.floor(Math.random() * nums.length);
 
-    $(".memory-game").append(`
+      $(".memory-game").append(`
     <div class="memory-card">
       <img class="front-face" src="/Assets/Images/Naruto/${nums[imageNumber]}.png"/>
       <img class="back-face" src="Assets/Images/Naruto/Back.png"/>
     </div>`
-    );
+      );
 
-    nums.splice(imageNumber, 1)
+      nums.splice(imageNumber, 1)
+    }
   }
+
+//<----TRYING TO MAKE THIS WORK
+function reShuffle(){
+  (".memory-game").append(`
+    <div class="memory-card">
+
+    </div>`
+      )
+}
+
+
+  //<-----------------FLIP------------>
+
   $(".memory-card").on("click", function (e) {
     if (lockBoard) return;
     if (this === firstCard) return;
@@ -116,15 +113,18 @@ $(document).ready(function () {
     console.log($(secondCard).children().first().attr("src"));
     cardMatch(firstCard, secondCard);
   });
+
+  //<-------------MATCH------------>
   function cardMatch(firstCard, secondCard) {
     let match = false;
 
     if ($(firstCard).children().first().attr("src") === $(secondCard).children().first().attr("src")) {
       match = true;
       if (match === true) {
+        setTimeout(() => {
         $(firstCard).addClass("disappear");
         $(secondCard).addClass("disappear");
-  
+        }, 1000);
       }
       console.log(match)
     } else {
@@ -133,7 +133,7 @@ $(document).ready(function () {
       console.log(match)
     }
   }
-
+  //<------------LOCK AND DISABLE------------->
   function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
@@ -156,12 +156,18 @@ $(document).ready(function () {
     [firstCard, secondCard] = [null, null];
   };
 
-  function winGame() {
+  function loseGame() {
     displayOverlay(`
     <p>Will you be Hokage?</p>
-    <button id="btn_style" type="button">START</button>`);
-
+    <button id="btn_style" type="button">FUCKING WORK</button>
+    `);
   }
+
+
+  //<-------WORK IN PROGRESS-------->
+  // function restartGame(){
+    
+  // }
 })
 
   //<---------------END OF ready Doc----------------->
