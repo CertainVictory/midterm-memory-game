@@ -4,12 +4,13 @@ $(document).ready(function () {
   let lockBoard = false;
   let firstCard, secondCard;
   let choice = "Naruto"
-  
+
   shuffle();
 
-  $(document).on("click", ".btn_naruto", function(){
-    console.log(choice)
+  $(document).on("click", ".btn_naruto", function () {
+
     choice = "Naruto";
+    $(".title").attr("src","/Assets/Images/Header/Animemory Logo.png");
     $(".memory-game").html("");
     shuffle();
     startTimer();
@@ -17,9 +18,19 @@ $(document).ready(function () {
     flipCards();
   })
 
-  $(document).on("click", ".btn_dbz", function(){
+  $(document).on("click", ".btn_dbz", function () {
     choice = "DBZ";
-    console.log(choice)
+    $(".title").attr("src","/Assets/Images/Header/Animemory Logo.png");
+    $(".memory-game").html("");
+    shuffle();
+    startTimer();
+    removeOverlay();
+    flipCards();
+  })
+
+  $(document).on("click", ".btn_meme", function () {
+    choice = "Meme";
+    $(".title").attr("src","/Assets/Images/Header/Mememory Logo.png");
     $(".memory-game").html("");
     shuffle();
     startTimer();
@@ -51,15 +62,16 @@ $(document).ready(function () {
   }
 
   displayOverlay(`
-    <p>Will you be Hokage?</p>
-    <button class="btn_naruto" type="button">Naruto</button>
-    <button class="btn_dbz" type="button">Dragon Ball Z</button>`);
+  <p>Choose Wisely . . .</p>
+  <button class="btn_naruto" type="button">Naruto</button>
+  <button class="btn_dbz" type="button">Dragon Ball Z</button>
+  <button class="btn_meme" type="button">Meme</button>`);
 
 
   //<------------TIMER--------->
   let sec = 10;
   function startTimer() {
-  
+
     let timer = setInterval(function () {
       $('#time').html('00:' + sec);
       sec--;
@@ -91,7 +103,7 @@ $(document).ready(function () {
     }
   }
 
-//<----TRYING TO MAKE THIS WORK
+  //<----TRYING TO MAKE THIS WORK
 
 
   //<-----------------FLIP------------>
@@ -127,8 +139,8 @@ $(document).ready(function () {
       match = true;
       if (match === true) {
         setTimeout(() => {
-        $(firstCard).addClass("disappear");
-        $(secondCard).addClass("disappear");
+          $(firstCard).addClass("disappear");
+          $(secondCard).addClass("disappear");
         }, 1000);
       }
       console.log(match)
@@ -140,8 +152,8 @@ $(document).ready(function () {
   }
   //<------------LOCK AND DISABLE------------->
   function disableCards() {
-    firstCard.removeEventListener('click', function(){});
-    secondCard.removeEventListener('click', function(){});
+    firstCard.removeEventListener('click', function () { });
+    secondCard.removeEventListener('click', function () { });
 
     resetBoard();
   }
@@ -165,21 +177,22 @@ $(document).ready(function () {
     $(".memory-game").html("");
     shuffle();
     displayOverlay(`
-    <p>Will you be Hokage?</p>
+    <p>Choose Wisely . . .</p>
     <button class="btn_naruto" type="button">Naruto</button>
-    <button class="btn_dbz" type="button">Dragon Ball Z</button>`);
+    <button class="btn_dbz" type="button">Dragon Ball Z</button>
+    <button class="btn_meme" type="button">Meme</button>`);
     sec = 10
   }
 
 
   //<-------WORK IN PROGRESS-------->
 
-  $(document).on("click", ".btn-restart", function(){
+  $(document).on("click", ".btn-restart", function () {
     sec = 0
     console.log('HELLORES')
   })
 
-  
+
 })
 
   //<---------------END OF ready Doc----------------->
