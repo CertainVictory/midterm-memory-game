@@ -106,7 +106,6 @@ $(document).ready(function () {
 
 
   //<-----------------FLIP------------>
-// function flipCards(){
   $(document).on("click", ".memory-card", function flipCards(e) {
     if (lockBoard) return;
     if (this === firstCard) return;
@@ -125,7 +124,6 @@ $(document).ready(function () {
     }
     cardMatch(firstCard, secondCard);
   });
-// }
 
   //<-------------MATCH------------>
   function cardMatch(firstCard, secondCard) {
@@ -169,7 +167,9 @@ $(document).ready(function () {
   };
 
   function loseGame() {
+    matches = 0
     $(".memory-game").html("");
+    clearInterval(timer)
     shuffle();
     displayOverlay(`
     <p>YOU LOOSE :(</p>
@@ -182,7 +182,9 @@ $(document).ready(function () {
   }
 
   function winGame() {
+    matches = 0
     $(".memory-game").html("");
+    clearInterval(timer)
     shuffle();
     displayOverlay(`
     <p>YOU WIN :D</p>
