@@ -11,7 +11,7 @@ $(document).ready(function () {
   $(document).on("click", ".btn_naruto", function () {
 
     choice = "Naruto";
-    $(".title").attr("src","/Assets/Images/Header/Animemory Logo.png");
+    $(".title").attr("src","/Assets/Images/Header/Animemory Logo 2.png");
     $(".memory-game").html("");
     shuffle();
     startTimer();
@@ -63,9 +63,10 @@ $(document).ready(function () {
 
   displayOverlay(`
   <p>Choose Wisely . . .</p>
-  <button class="btn_naruto" type="button">Naruto</button>
-  <button class="btn_dbz" type="button">Dragon Ball Z</button>
-  <button class="btn_meme" type="button">Meme</button>`);
+  <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
+  <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
+  <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>
+  `);
 
   //<------------TIMER--------->
   let sec = 90;
@@ -169,9 +170,9 @@ $(document).ready(function () {
     shuffle();
     displayOverlay(`
     <p>Choose Wisely . . .</p>
-    <button class="btn_naruto" type="button">Naruto</button>
-    <button class="btn_dbz" type="button">Dragon Ball Z</button>
-    <button class="btn_meme" type="button">Meme</button>`);
+    <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
+    <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
+    <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
     sec = 90
   }
 
@@ -181,9 +182,9 @@ $(document).ready(function () {
     clearInterval(timer)
     displayOverlay(`
     <p>Choose Wisely . . .</p>
-    <button class="btn_naruto" type="button">Naruto</button>
-    <button class="btn_dbz" type="button">Dragon Ball Z</button>
-    <button class="btn_meme" type="button">Meme</button>`);
+    <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
+    <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
+    <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
     sec = 90
   })
 

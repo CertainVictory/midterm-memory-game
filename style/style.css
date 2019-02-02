@@ -60,18 +60,21 @@ nav {
   align-self: center;
 }
 /* Overlay */
-.overlay {
-  
-}
+
 .btn_naruto, .btn_dbz, .btn_meme {
-  width: 300px;
+  max-width: 100px;
+  max-height:250px;
   background-color: #e67e22;
-  color: #eeeeee;
   padding: 10px;
   border-radius: 10px;
   border: none;
   z-index: 1000;
  }
+
+ .btn_meme {
+   background-color: #cd3d74;
+ }
+
 /* Memory card Container */
 .memory-game {
   width: 400px;
@@ -140,6 +143,10 @@ nav {
   }
   #time {
     font-size: 32px;
+  }
+  .btn_naruto, .btn_dbz, .btn_meme {
+    max-width: 300px;
+    max-height:250px;
   }
   .memory-card {
     width:104px;
