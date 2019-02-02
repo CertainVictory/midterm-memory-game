@@ -23,7 +23,7 @@ nav {
   height: 75px;
   display: flex;
   background-color: #3498db;
-  justify-content: space-between;
+  justify-content: space-around;
   padding:25px;
 }
 .btn-restart {
@@ -57,7 +57,7 @@ nav {
   align-self: center;
 }
 /* Overlay */
-#btn_style {
+.btn_style {
   width: 300px;
   background-color: #e67e22;
   color: #eeeeee;
