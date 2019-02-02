@@ -3,120 +3,147 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 @font-face {
   font-family: "Lemon Milk";
   src: url(/Assets/Fonts/LemonMilk.otf)
 }
-
 body {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   display: flex;
-  justify-content: center;
   background: #34495e;
   font-family: "Lemon Milk";
   flex-direction: column;
 }
-
 /* Navigation Bar */
-
 nav {
   position: fixed;
   top:0;
-  width: 100vw;
-  height: 150px;
+  width: 100%;
+  height: 75px;
   display: flex;
   background-color: #3498db;
   justify-content: space-between;
   padding:25px;
 }
-
 .btn-restart {
-  font-size:32px;
+  font-size:14px;
   color: #eeeeee;
   background-color: #34495e;
   align-self: center;
-  padding:15px;
-  padding-right:30px;
   border-radius: 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-
+.btn-text {
+  display:none;
+}
 .img-restart {
-  max-width:48px;
-  max-height:48px;
-  padding-right:5px;
+  max-width:32px;
+  max-height:32px;
 }
-
 .title {
   color:#eeeeee;
-  font-size: 64px;
+  font-size: 24px;
   align-self: center;
 }
-
 #cont-time{
   display: flex;
 }
-
 #time {
   color:#eeeeee;
-  font-size: 48px;
+  font-size: 16px;
   align-self: center;
 }
-
 /* Overlay */
 #btn_style {
   width: 300px;
-  border: 0px soild;
-  background-color: darkorange;
-  color: white;
+  background-color: #e67e22;
+  color: #eeeeee;
   padding: 10px;
   border-radius: 10px;
+  z-index: 1000;
  }
-
 /* Memory card Container */
-
 .memory-game {
-  /* width: 880px; */
+  width: 400px;
+  height: 380px;
   display: flex;
   flex-wrap: wrap;
   align-self: center;
+  justify-self: center;
   justify-content: center;
+  position: relative;
+  align-items:center;
   perspective: 1000px;
+  margin-top: 100px;
+  
 }
-
 /* Memory cards */
-
 .memory-card {
-  width:208px;
-  height: 250px;
-  margin: 15px;
+  width:80px;
+  height:62.5px;
+  margin: 20px;
   position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .5s;
 }
-
 .memory-card:active {
   transform: scale(0.97);
   transition: transform .2s;
 }
-
 .memory-card.flip {
   transform: rotateY(180deg);
 }
-
 .front-face,
 .back-face {
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 93.75px;
+  max-height: 93.75px;
   padding: 20px;
   position: absolute;
   background: #3498db;
   backface-visibility: hidden;
 }
-
 .front-face {
   transform: rotateY(180deg);
+}
+.disappear {
+  opacity: 0.0;
+}
+@media only screen and (min-width: 627px) {
+  nav {
+    height: 75px;
+  }
+  .title {
+    font-size: 64px;
+  }
+  .btn-text {
+    display: block;
+  }
+  .img-restart {
+    padding-right:5px;
+  }
+  
+  .btn-restart {
+    padding:10px;
+  padding-right:15px;
+  }
+  #time {
+    font-size: 32px;
+  }
+  .memory-card {
+    width:104px;
+    height:125px;
+  }
+  .front-face, .back-face {
+    max-width: 125px;
+    max-height: 125px;
+  }
+  .memory-game {
+    width: 600px;
+    height: 500px;
+    margin-top: 80px;
+  }
 }

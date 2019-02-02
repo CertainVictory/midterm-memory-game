@@ -1,10 +1,9 @@
 "use strict";
 $(document).ready(function () {
-
   shuffle();
   //<----------OVERLAY STYLE---------->
   function displayOverlay(text) {
-    $("<table id='overlay'><tbody><tr><td>" + text + "</td></tr></tbody></table>").css({
+    $("<table class='overlay'><tbody><tr><td>" + text + "</td></tr></tbody></table>").css({
       "position": "fixed",
       "top": "0px",
       "left": "0px",
@@ -20,18 +19,12 @@ $(document).ready(function () {
   }
 
   function removeOverlay() {
-    $("#overlay").remove();
+    $(".overlay").hide();
   }
 
-  $("body").click(function () {
-    if ($("#btn_style").length > 0) {
-      removeOverlay();
-    }
-
-  });
   displayOverlay(`
     <p>Will you be Hokage?</p>
-    <button id="btn_style" type="button">START</button>`);
+    <button class="btn_style" type="button">START</button>`);
 
 
   //<------------TIMER--------->
@@ -48,12 +41,12 @@ $(document).ready(function () {
     }, 1000);
   }
 
+  $(document).on("click", ".btn_style", function(){
+    console.log('HELLO')
+    startTimer();
+    removeOverlay();
 
-
-  $("#btn_style").on("click", function () {
-    startTimer()
-
-  });
+  })
 
   //<------------------------------GAME FUNCTION------------------------------>
 
@@ -80,13 +73,6 @@ $(document).ready(function () {
   }
 
 //<----TRYING TO MAKE THIS WORK
-function reShuffle(){
-  (".memory-game").append(`
-    <div class="memory-card">
-
-    </div>`
-      )
-}
 
 
   //<-----------------FLIP------------>
@@ -157,10 +143,11 @@ function reShuffle(){
   };
 
   function loseGame() {
+    $(".memory-game").html("");
+    shuffle();
     displayOverlay(`
     <p>Will you be Hokage?</p>
-    <button id="btn_style" type="button">FUCKING WORK</button>
-    `);
+    <button class="btn_style" type="button">START</button>`);
   }
 
 
