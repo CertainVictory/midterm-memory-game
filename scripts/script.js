@@ -68,7 +68,7 @@ $(document).ready(function () {
   <button class="btn_meme" type="button">Meme</button>`);
 
   //<------------TIMER--------->
-  let sec = 10;
+  let sec = 90;
   function startTimer() {
 
     timer = setInterval(function () {
@@ -106,8 +106,8 @@ $(document).ready(function () {
 
 
   //<-----------------FLIP------------>
-function flipCards(){
-  $(document).on("click", ".memory-card", function (e) {
+// function flipCards(){
+  $(document).on("click", ".memory-card", function flipCards(e) {
     if (lockBoard) return;
     if (this === firstCard) return;
     $(e.target.parentElement).addClass('flip');
@@ -125,20 +125,17 @@ function flipCards(){
     }
     cardMatch(firstCard, secondCard);
   });
-}
+// }
 
   //<-------------MATCH------------>
   function cardMatch(firstCard, secondCard) {
-    let match = false;
 
     if ($(firstCard).children().first().attr("src") === $(secondCard).children().first().attr("src")) {
-      match = true;
-      if (match === true) {
         setTimeout(() => {
           $(firstCard).addClass("disappear");
           $(secondCard).addClass("disappear");
+          disableCards()
         }, 1000);
-      }
     } else {
       // match = false;
       unflipCards()
@@ -146,8 +143,8 @@ function flipCards(){
   }
   //<------------LOCK AND DISABLE------------->
   function disableCards() {
-    firstCard.removeEventListener('click', function () { });
-    secondCard.removeEventListener('click', function () { });
+    firstCard.removeEventListener('click', flipCards);
+    secondCard.removeEventListener('click', flipCards);
 
     resetBoard();
   }
@@ -175,7 +172,7 @@ function flipCards(){
     <button class="btn_naruto" type="button">Naruto</button>
     <button class="btn_dbz" type="button">Dragon Ball Z</button>
     <button class="btn_meme" type="button">Meme</button>`);
-    sec = 10
+    sec = 90
   }
 
   $(document).on("click", ".btn-restart", function () {
@@ -187,7 +184,7 @@ function flipCards(){
     <button class="btn_naruto" type="button">Naruto</button>
     <button class="btn_dbz" type="button">Dragon Ball Z</button>
     <button class="btn_meme" type="button">Meme</button>`);
-    sec = 10
+    sec = 90
   })
 
 
