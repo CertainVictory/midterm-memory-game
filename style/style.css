@@ -35,6 +35,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  border:none;
 }
 .btn-text {
   display:none;
@@ -59,6 +60,9 @@ nav {
   align-self: center;
 }
 /* Overlay */
+.overlay {
+  
+}
 .btn_naruto, .btn_dbz, .btn_meme {
   width: 300px;
   background-color: #e67e22;
@@ -131,7 +135,8 @@ nav {
   
   .btn-restart {
     padding:10px;
-  padding-right:15px;
+    padding-right:15px;
+    border:none;
   }
   #time {
     font-size: 32px;

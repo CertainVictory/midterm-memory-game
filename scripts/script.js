@@ -3,7 +3,8 @@ $(document).ready(function () {
   let hasFlippedCard = false;
   let lockBoard = false;
   let firstCard, secondCard;
-  let choice = "Naruto"
+  let timer = 0;
+  let choice = "Naruto";
 
   shuffle();
 
@@ -46,14 +47,13 @@ $(document).ready(function () {
       "position": "fixed",
       "top": "0px",
       "left": "0px",
-      "width": "100%",
-      "height": "100%",
+      "width": "100vw",
+      "height": "100vh",
       "background-color": "rgba(0,0,0,.5)",
       "z-index": "10",
       "vertical-align": "middle",
       "text-align": "center",
-      "color": "#fff",
-      // "font-weight": "bold",
+      "color": "#fff"
     }).appendTo("body");
   }
 
@@ -67,13 +67,12 @@ $(document).ready(function () {
   <button class="btn_dbz" type="button">Dragon Ball Z</button>
   <button class="btn_meme" type="button">Meme</button>`);
 
-
   //<------------TIMER--------->
   let sec = 10;
   function startTimer() {
 
-    let timer = setInterval(function () {
-      $('#time').html('00:' + sec);
+    timer = setInterval(function () {
+      $('#time').html(sec);
       sec--;
       if (sec < 0) {
         clearInterval(timer)
@@ -116,8 +115,6 @@ function flipCards(){
       //first card
       hasFlippedCard = true;
       firstCard = e.target.parentElement;
-
-
       disableCards();
 
     } else {
@@ -126,8 +123,6 @@ function flipCards(){
       secondCard = e.target.parentElement;
 
     }
-    console.log($(firstCard).children().first().attr("src"));
-    console.log($(secondCard).children().first().attr("src"));
     cardMatch(firstCard, secondCard);
   });
 }
@@ -144,11 +139,9 @@ function flipCards(){
           $(secondCard).addClass("disappear");
         }, 1000);
       }
-      console.log(match)
     } else {
       // match = false;
       unflipCards()
-      console.log(match)
     }
   }
   //<------------LOCK AND DISABLE------------->
@@ -185,13 +178,16 @@ function flipCards(){
     sec = 10
   }
 
-
-  //<-------WORK IN PROGRESS-------->
-
   $(document).on("click", ".btn-restart", function () {
-    sec = 0
-    flipCards();
-    console.log('HELLORES')
+    $(".memory-game").html("");
+    shuffle();
+    clearInterval(timer)
+    displayOverlay(`
+    <p>Choose Wisely . . .</p>
+    <button class="btn_naruto" type="button">Naruto</button>
+    <button class="btn_dbz" type="button">Dragon Ball Z</button>
+    <button class="btn_meme" type="button">Meme</button>`);
+    sec = 10
   })
 
 
