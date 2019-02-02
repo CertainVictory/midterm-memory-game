@@ -56,9 +56,10 @@ $(document).ready(function () {
 
 
   //<------------TIMER--------->
+  let sec = 10;
   function startTimer() {
-    var sec = 10;
-    var timer = setInterval(function () {
+  
+    let timer = setInterval(function () {
       $('#time').html('00:' + sec);
       sec--;
       if (sec < 0) {
@@ -166,13 +167,18 @@ $(document).ready(function () {
     <p>Will you be Hokage?</p>
     <button class="btn_naruto" type="button">Naruto</button>
     <button class="btn_dbz" type="button">Dragon Ball Z</button>`);
+    sec = 10
   }
 
 
   //<-------WORK IN PROGRESS-------->
-  // function restartGame(){
-    
-  // }
+
+  $(document).on("click", ".btn-restart", function(){
+    sec = 0
+    console.log('HELLORES')
+  })
+
+  
 })
 
   //<---------------END OF ready Doc----------------->
