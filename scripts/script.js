@@ -197,6 +197,7 @@ $(document).ready(function () {
   }
 
   $(document).on("click", ".btn-restart", function () {
+    matches=0
     $(".memory-game").html("");
     shuffle();
     clearInterval(timer)
