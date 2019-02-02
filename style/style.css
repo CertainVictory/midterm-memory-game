@@ -59,7 +59,7 @@ nav {
   align-self: center;
 }
 /* Overlay */
-.btn_style {
+.btn_naruto, .btn_dbz {
   width: 300px;
   background-color: #e67e22;
   color: #eeeeee;

@@ -1,6 +1,33 @@
 "use strict";
 $(document).ready(function () {
+  let hasFlippedCard = false;
+  let lockBoard = false;
+  let firstCard, secondCard;
+  let choice = "Naruto"
+  
   shuffle();
+
+  $(document).on("click", ".btn_naruto", function(){
+    console.log(choice)
+    choice = "Naruto";
+    $(".memory-game").html("");
+    shuffle();
+    startTimer();
+    removeOverlay();
+  })
+
+  $(document).on("click", ".btn_dbz", function(){
+    choice = "DBZ";
+    console.log(choice)
+    $(".memory-game").html("");
+    shuffle();
+    startTimer();
+    removeOverlay();
+
+  })
+
+
+
   //<----------OVERLAY STYLE---------->
   function displayOverlay(text) {
     $("<table class='overlay'><tbody><tr><td>" + text + "</td></tr></tbody></table>").css({
@@ -24,7 +51,8 @@ $(document).ready(function () {
 
   displayOverlay(`
     <p>Will you be Hokage?</p>
-    <button class="btn_style" type="button">START</button>`);
+    <button class="btn_naruto" type="button">Naruto</button>
+    <button class="btn_dbz" type="button">Dragon Ball Z</button>`);
 
 
   //<------------TIMER--------->
@@ -41,20 +69,9 @@ $(document).ready(function () {
     }, 1000);
   }
 
-  $(document).on("click", ".btn_style", function(){
-    console.log('HELLO')
-    startTimer();
-    removeOverlay();
-
-  })
-
   //<------------------------------GAME FUNCTION------------------------------>
 
   //<-----------SHUFFLE------------>
-
-  let hasFlippedCard = false;
-  let lockBoard = false;
-  let firstCard, secondCard;
   function shuffle() {
 
     let nums = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
@@ -63,8 +80,8 @@ $(document).ready(function () {
 
       $(".memory-game").append(`
     <div class="memory-card">
-      <img class="front-face" src="/Assets/Images/Naruto/${nums[imageNumber]}.png"/>
-      <img class="back-face" src="Assets/Images/Naruto/Back.png"/>
+      <img class="front-face" src="/Assets/Images/${choice}/${nums[imageNumber]}.png"/>
+      <img class="back-face" src="Assets/Images/${choice}/Back.png"/>
     </div>`
       );
 
@@ -77,7 +94,7 @@ $(document).ready(function () {
 
   //<-----------------FLIP------------>
 
-  $(".memory-card").on("click", function (e) {
+  $(document).on("click", ".memory-card", function (e) {
     if (lockBoard) return;
     if (this === firstCard) return;
     $(e.target.parentElement).addClass('flip');
@@ -121,8 +138,8 @@ $(document).ready(function () {
   }
   //<------------LOCK AND DISABLE------------->
   function disableCards() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
+    firstCard.removeEventListener('click', function(){});
+    secondCard.removeEventListener('click', function(){});
 
     resetBoard();
   }
@@ -147,7 +164,8 @@ $(document).ready(function () {
     shuffle();
     displayOverlay(`
     <p>Will you be Hokage?</p>
-    <button class="btn_style" type="button">START</button>`);
+    <button class="btn_naruto" type="button">Naruto</button>
+    <button class="btn_dbz" type="button">Dragon Ball Z</button>`);
   }
 
 
