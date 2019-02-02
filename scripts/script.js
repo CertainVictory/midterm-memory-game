@@ -23,7 +23,7 @@ $(document).ready(function () {
     shuffle();
     startTimer();
     removeOverlay();
-
+    flipCards();
   })
 
 
