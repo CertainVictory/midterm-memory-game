@@ -5,6 +5,7 @@ $(document).ready(function () {
   let firstCard, secondCard;
   let timer = 0;
   let choice = "Naruto";
+  let matches = 0;
 
   shuffle();
 
@@ -71,14 +72,12 @@ $(document).ready(function () {
   //<------------TIMER--------->
   let sec = 90;
   function startTimer() {
-
     timer = setInterval(function () {
       $('#time').html(sec);
       sec--;
       if (sec < 0) {
         clearInterval(timer)
         loseGame()
-
       }
     }, 1000);
   }
@@ -132,14 +131,18 @@ $(document).ready(function () {
   function cardMatch(firstCard, secondCard) {
 
     if ($(firstCard).children().first().attr("src") === $(secondCard).children().first().attr("src")) {
+      matches++;
         setTimeout(() => {
           $(firstCard).addClass("disappear");
           $(secondCard).addClass("disappear");
           disableCards()
         }, 1000);
     } else {
-      // match = false;
       unflipCards()
+    }
+
+    if (matches === 6) {
+      winGame();
     }
   }
   //<------------LOCK AND DISABLE------------->
@@ -169,6 +172,21 @@ $(document).ready(function () {
     $(".memory-game").html("");
     shuffle();
     displayOverlay(`
+    <p>YOU LOOSE :(</p>
+    <p>Try again?</p>
+    <p>Choose Wisely . . .</p>
+    <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
+    <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
+    <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
+    sec = 90
+  }
+
+  function winGame() {
+    $(".memory-game").html("");
+    shuffle();
+    displayOverlay(`
+    <p>YOU WIN :D</p>
+    <p>Try again?</p>
     <p>Choose Wisely . . .</p>
     <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
     <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
