@@ -1,5 +1,6 @@
 "use strict";
 $(document).ready(function () {
+  idleMusic();
   let hasFlippedCard = false;
   let lockBoard = false;
   let firstCard, secondCard;
@@ -8,8 +9,7 @@ $(document).ready(function () {
   let matches = 0;
   shuffle();
 
-  idleMusic();
-
+//<---logic for overlay button theme--->
   $(document).on("click", ".btn_naruto", function () {
     choice = "Naruto";
     $('audio#idle')[0].pause()
@@ -73,7 +73,7 @@ $(document).ready(function () {
   function removeOverlay() {
     $(".overlay").hide();
   }
-
+//<---Default Overlay--->
   displayOverlay(`
   <h3>WELCOME TO ANIMEMORY!</h3>
   <p>There are 3 paths to choose from</p>
@@ -82,6 +82,7 @@ $(document).ready(function () {
   <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
   <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>
   `);
+  
 
   //<------------TIMER--------->
   let sec = 90;
@@ -96,7 +97,7 @@ $(document).ready(function () {
     }, 1000);
   }
 
-  //<------------------------------GAME FUNCTION------------------------------>
+  //<----------GAME FUNCTION---------->
 
   //<-----------SHUFFLE------------>
   function shuffle() {
@@ -236,29 +237,29 @@ $(document).ready(function () {
 
   $(document).on("click", ".btn-restart", function () {
     matches = 0
-    $('audio#never')[0].pause()
+    $('audio#never')[0].pause() //pauses music on restart click
     $('audio#never')[0].currentTime = 0
     $('audio#naruto')[0].pause()
     $('audio#naruto')[0].currentTime = 0
     $('audio#dbz')[0].pause()
     $('audio#dbz')[0].currentTime = 0
     $(".memory-game").html("");
-    shuffle();
-    clearInterval(timer)
+    shuffle(); //shuffles cards up
+    clearInterval(timer) //clears timer to 0
     displayOverlay(`
     <p>Do it for real this time!</p>
     <p>Choose Wisely . . .</p>
     <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
     <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
     <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
-    idleMusic();
+    //^^displays overlay with choose wisely and restart specific message
+    idleMusic(); //calls for self-named function for audio to be played
     sec = 90
   })
 
 
 
-  //<-----------MUSIC
-
+  //<-----------MUSIC------------>
 
   function bgMusic() {
     if (choice === "Naruto"){
@@ -275,32 +276,27 @@ $(document).ready(function () {
     }
   }
 
+    //<-----------MUSIC on overlay------------>
+
   function idleMusic() {
     $('audio#idle')[0].play()
     $('audio#idle').prop("volume", 0.02);
   }
 
-  //<-----------Card Disappear Sound effects
+  //<------Card Disappear Sound effects------>
 
   function jutsu() {
     if (choice === "Naruto") {
-      // let audio = new Audio('jutsu.mp3');
-      // audio.play();
-      // audio.volume = 1;
-
       $('audio#jutsu')[0].play()
-      $('audio#justu').prop("volume", 1);
+      $('audio#justu').prop("volume", .07);
     }
     if (choice === "DBZ") {
-      // let audio = new Audio('dbz-teleport.mp3');
-      // audio.play();
-      // audio.volume = .05;
       $('audio#teleport')[0].play()
-      $('audio#teleport').prop("volume", .05);
+      $('audio#teleport').prop("volume", .08);
     }
     if (choice === "Meme") {
       $('audio#bye')[0].play()
-      $('audio#bye').prop("volume", 1);
+      $('audio#bye').prop("volume", .07);
     }
   }
 
