@@ -82,7 +82,6 @@ $(document).ready(function () {
   <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
   <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>
   `);
-  
 
   //<------------TIMER--------->
   let sec = 90;
