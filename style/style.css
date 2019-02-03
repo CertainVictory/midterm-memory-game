@@ -149,16 +149,17 @@ nav {
     max-height:250px;
   }
   .memory-card {
-    width:104px;
-    height:125px;
+    width:154px;
+    height:175px;
   }
   .front-face, .back-face {
-    max-width: 125px;
-    max-height: 125px;
+    max-width: 175px;
+    max-height: 175px;
   }
   .memory-game {
-    width: 600px;
-    height: 500px;
+    width: 800px;
+    height: 700px;
     margin-top: 80px;
+
   }
 }

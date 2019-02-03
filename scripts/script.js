@@ -6,38 +6,50 @@ $(document).ready(function () {
   let timer = 0;
   let choice = "Naruto";
   let matches = 0;
-
   shuffle();
 
-  $(document).on("click", ".btn_naruto", function () {
+  idleMusic();
 
+  $(document).on("click", ".btn_naruto", function () {
     choice = "Naruto";
-    $(".title").attr("src","/Assets/Images/Header/Animemory Logo 2.png");
+    $('audio#idle')[0].pause()
+    $('audio#idle')[0].currentTime = 0
+    $(".title").attr("src", "/Assets/Images/Header/Animemory Logo 2.png");
     $(".memory-game").html("");
     shuffle();
     startTimer();
     removeOverlay();
+    bgMusic();
     flipCards();
+
   })
 
   $(document).on("click", ".btn_dbz", function () {
     choice = "DBZ";
-    $(".title").attr("src","/Assets/Images/Header/Animemory Logo.png");
+    $('audio#idle')[0].pause()
+    $('audio#idle')[0].currentTime = 0
+    $(".title").attr("src", "/Assets/Images/Header/Animemory Logo.png");
     $(".memory-game").html("");
     shuffle();
     startTimer();
     removeOverlay();
+    bgMusic()
     flipCards();
+
   })
 
   $(document).on("click", ".btn_meme", function () {
     choice = "Meme";
-    $(".title").attr("src","/Assets/Images/Header/Mememory Logo.png");
+    $('audio#idle')[0].pause()
+    $('audio#idle')[0].currentTime = 0
+    $(".title").attr("src", "/Assets/Images/Header/Mememory Logo.png");
     $(".memory-game").html("");
     shuffle();
     startTimer();
     removeOverlay();
+    bgMusic();
     flipCards();
+
   })
 
 
@@ -63,7 +75,9 @@ $(document).ready(function () {
   }
 
   displayOverlay(`
-  <p>Choose Wisely . . .</p>
+  <h3>WELCOME TO ANIMEMORY!</h3>
+  <p>There are 3 paths to choose from</p>
+  <p>So Choose Wisely . . .</p>
   <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
   <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
   <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>
@@ -116,6 +130,7 @@ $(document).ready(function () {
       firstCard = e.target.parentElement;
       disableCards();
 
+
     } else {
       // second card
       hasFlippedCard = false;
@@ -130,11 +145,12 @@ $(document).ready(function () {
 
     if ($(firstCard).children().first().attr("src") === $(secondCard).children().first().attr("src")) {
       matches++;
-        setTimeout(() => {
-          $(firstCard).addClass("disappear");
-          $(secondCard).addClass("disappear");
-          disableCards()
-        }, 1000);
+      setTimeout(() => {
+        jutsu();
+        $(firstCard).addClass("disappear");
+        $(secondCard).addClass("disappear");
+        disableCards()
+      }, 1000);
     } else {
       unflipCards()
     }
@@ -143,6 +159,8 @@ $(document).ready(function () {
       winGame();
     }
   }
+
+
   //<------------LOCK AND DISABLE------------->
   function disableCards() {
     firstCard.removeEventListener('click', flipCards);
@@ -167,47 +185,125 @@ $(document).ready(function () {
   };
 
   function loseGame() {
-    matches = 0
-    $(".memory-game").html("");
-    clearInterval(timer)
-    shuffle();
-    displayOverlay(`
-    <p>YOU LOOSE :(</p>
-    <p>Try again?</p>
-    <p>Choose Wisely . . .</p>
-    <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
-    <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
-    <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
-    sec = 90
+
+    setTimeout(() => {
+      matches = 0
+      $('audio#never')[0].pause()
+      $('audio#never')[0].currentTime = 0
+      $('audio#naruto')[0].pause()
+      $('audio#naruto')[0].currentTime = 0
+      $('audio#dbz')[0].pause()
+      $('audio#dbz')[0].currentTime = 0
+      $(".memory-game").html("");
+      clearInterval(timer)
+      shuffle();
+      displayOverlay(`
+      <p>YOU LOSE :(</p>
+      <p>Try again?</p>
+      <p>Choose Wisely . . .</p>
+      <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
+      <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
+      <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
+      sec = 90
+      idleMusic();
+    }, 1000);
   }
 
   function winGame() {
-    matches = 0
-    $(".memory-game").html("");
-    clearInterval(timer)
-    shuffle();
-    displayOverlay(`
-    <p>YOU WIN :D</p>
-    <p>Try again?</p>
-    <p>Choose Wisely . . .</p>
-    <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
-    <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
-    <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
-    sec = 90
+
+    setTimeout(() => {
+      matches = 0
+      $('audio#never')[0].pause()
+      $('audio#never')[0].currentTime = 0
+      $('audio#naruto')[0].pause()
+      $('audio#naruto')[0].currentTime = 0
+      $('audio#dbz')[0].pause()
+      $('audio#dbz')[0].currentTime = 0
+      $(".memory-game").html("");
+      clearInterval(timer)
+      shuffle();
+      displayOverlay(`
+      <h3>YOU WIN!</h3>
+      <p>Try another path</p>
+      <p>Choose Wisely . . .</p>
+      <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
+      <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
+      <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
+      sec = 90
+      idleMusic();
+    }, 2000);
   }
 
   $(document).on("click", ".btn-restart", function () {
-    matches=0
+    matches = 0
+    $('audio#never')[0].pause()
+    $('audio#never')[0].currentTime = 0
+    $('audio#naruto')[0].pause()
+    $('audio#naruto')[0].currentTime = 0
+    $('audio#dbz')[0].pause()
+    $('audio#dbz')[0].currentTime = 0
     $(".memory-game").html("");
     shuffle();
     clearInterval(timer)
     displayOverlay(`
+    <p>Do it for real this time!</p>
     <p>Choose Wisely . . .</p>
     <img class="btn_naruto" src="Assets/Images/Naruto/Back.png"/>
     <img class="btn_dbz" src="Assets/Images/DBZ/Back.png"/>
     <img class="btn_meme" src="Assets/Images/Meme/Back.png"/>`);
+    idleMusic();
     sec = 90
   })
+
+
+
+  //<-----------MUSIC
+
+
+  function bgMusic() {
+    if (choice === "Naruto"){
+      $('audio#naruto')[0].play()
+      $('audio#naruto').prop("volume", 0.06);
+    }
+    if (choice === "DBZ"){
+      $('audio#dbz')[0].play()
+      $('audio#dbz').prop("volume", 0.04);
+    }
+    if (choice === "Meme"){
+      $('audio#never')[0].play()
+      $('audio#never').prop("volume", 0.04);
+    }
+  }
+
+  function idleMusic() {
+    $('audio#idle')[0].play()
+    $('audio#idle').prop("volume", 0.02);
+  }
+
+  //<-----------Card Disappear Sound effects
+
+  function jutsu() {
+    if (choice === "Naruto") {
+      // let audio = new Audio('jutsu.mp3');
+      // audio.play();
+      // audio.volume = 1;
+
+      $('audio#jutsu')[0].play()
+      $('audio#justu').prop("volume", 1);
+    }
+    if (choice === "DBZ") {
+      // let audio = new Audio('dbz-teleport.mp3');
+      // audio.play();
+      // audio.volume = .05;
+      $('audio#teleport')[0].play()
+      $('audio#teleport').prop("volume", .05);
+    }
+    if (choice === "Meme") {
+      $('audio#bye')[0].play()
+      $('audio#bye').prop("volume", 1);
+    }
+  }
+
 
 
 })
