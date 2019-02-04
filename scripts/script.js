@@ -271,7 +271,7 @@ $(document).ready(function () {
     }
     if (choice === "Meme"){
       $('audio#never')[0].play()
-      $('audio#never').prop("volume", 0.04);
+      $('audio#never').prop("volume", 0.02);
     }
   }
 
@@ -295,7 +295,7 @@ $(document).ready(function () {
     }
     if (choice === "Meme") {
       $('audio#bye')[0].play()
-      $('audio#bye').prop("volume", .07);
+      $('audio#bye').prop("volume", .05);
     }
   }
 
